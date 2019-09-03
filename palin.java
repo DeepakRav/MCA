@@ -6,7 +6,7 @@ class palin{
 		System.out.println("Enter String");
 		String msg = sc.nextLine();
 		char str[] = msg.toCharArray();
-		String hello = "";
+		String hello = "Hello";
 		for(int i=0 ; i<msg.length(); i++){
 			char tmp = msg.charAt(i);
 			for(int j=msg.length()-1;j>i;j--){
