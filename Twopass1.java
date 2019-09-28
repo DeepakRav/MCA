@@ -8,10 +8,10 @@ class Twopass1
 {
 	public static void main(String args[]) throws IOException
 	{
-		int ch,count=0,i,flag=0;
+		int ch,countt=0,i,flag=0,countl=0,lc=0,flageq=0,elc=0;
 		String str;
-		String name[]={"START", "READ", "MOVER", "MOVEM"};
-		String str1;
+		String name[]={"START", "ADD", "SUB", "MULT", "DIV", "MOVER", "MOVEM", "COMP", "BC", "READ", "PRINT", "STOP", "END"};
+		String str1="",str2="";
 		//File fr=new File("Assemblycode.txt");
 	    BufferedReader input=new BufferedReader(new FileReader("Assemblycode.txt"));
 		/*while((str=input.readLine())!=null)
@@ -20,38 +20,72 @@ class Twopass1
 		}*/
 		FileWriter fw=new FileWriter("mnemonic.txt");
 		FileWriter fw1=new FileWriter("symtab.txt");
+		fw1.write("Symbols\tLC\r\n\r\n");
 		while((str=input.readLine())!=null)
 		{
+			countl++;
+			if(countl>2)
+			{
+				lc++;
+			}
 			StringTokenizer st1=new StringTokenizer(str, " ");
-			System.out.println(str);
+			//System.out.println(str);
 			while(st1.hasMoreTokens())
 			{
-				count++;
+				countt++;
 				str1=st1.nextToken();
-				if(count==1)
+				if(countt==1)
 				{
 					for(i=0;i<name.length;i++)
 					{
 						if(str1.equals(name[i]))
 						{
-							fw.write(name[i] + " ");
+							fw.write(name[i] + "\r\n");
 							flag=1;
-							System.out.println("Trial!"+ name[i]);
 						}
 					}
-					System.out.println(flag);
 					if(flag!=1)
 					{
+						str2=str2 + "\t" + str1;
 						fw1.write(str1);
-						System.out.println(str1+flag);
 					}
 					
 				}
-					System.out.println(str1);
-					System.out.println(count);
+				if(countl==1 && countt==2)
+				{
+					lc=Integer.parseInt(str1);
+				}
+				if(str1.equals("EQU"))
+				{
+					flageq=1;
+				}
+					//System.out.println(str1);
+					//System.out.println(countt);
 			}
-			count=0;
+			if(flag!=1)
+			{
+				if(flageq==1)
+				{
+					StringTokenizer st2=new StringTokenizer(str2, "\t");
+					while(st2.hasMoreTokens())
+					{
+						//System.out.println(st2.nextToken());
+						if(st2.nextToken().equals(str1))
+						{
+							elc=Integer.parseInt(st2.nextToken());
+						}
+					}
+					fw1.write("\t" + elc + "\r\n");
+				}
+				else
+				{
+					str2=str2 + "\t" + lc;
+					fw1.write("\t" + lc + "\r\n");
+				}
+			}
+			countt=0;
 			flag=0;
+			flageq=0;
 		}
 		fw.close();
 		fw1.close();
