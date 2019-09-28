@@ -75,6 +75,7 @@ class Twopass1
 							elc=Integer.parseInt(st2.nextToken());
 						}
 					}
+					str2=str2 + "\t" + elc;
 					fw1.write("\t" + elc + "\r\n");
 				}
 				else
