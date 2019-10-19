@@ -4,13 +4,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.util.StringTokenizer;
-class Twopass1
+class Tables
 {
-	public static void main(String args[]) throws IOException
+	public void creation() throws IOException
 	{
 		int ch,countt=0,i,flag=0,countl=0,lc=0,flageq=0,elc=0,flaglt=0,countp=0,flagend=0,endlit=0;
 		String str;
-		String name[]={"START", "ADD", "SUB", "MULT", "DIV", "MOVER", "MOVEM", "COMP", "BC", "READ", "PRINT", "STOP", "END"};
+		String name[]={"STOP", "ADD", "SUB", "MULT", "MOVER", "MOVEM", "COMP", "BC", "DIV", "READ", "PRINT", "START", "END"};
 		String str1="",str2="";
 		//File fr=new File("Assemblycode.txt");
 	    BufferedReader input=new BufferedReader(new FileReader("Assemblycode.txt"));
@@ -141,5 +141,13 @@ class Twopass1
 		fw1.close();
 		fw2.close();
 		fw3.close();
+	}
+}
+class Twopass1
+{
+	public static void main(String args[]) throws IOException
+	{
+		Tables t=new Tables();
+		t.creation();
 	}
 }
